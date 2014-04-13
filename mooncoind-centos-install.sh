@@ -46,10 +46,13 @@ cp -a mooncoind /usr/local/bin/
 #echo " If you do not have a standard non-root user, then you can create one using the useradd command. In this example we.re going to create a user named moon. "
 useradd -m -s/bin/bash moon
 
+mkdir /home/moon/.mooncoin
+chown moon:moon /home/moon/.mooncoin
 cd /home/moon/.mooncoin
 pass=$(tr -dc A-Za-z0-9 </dev/urandom |  head -c 30)
-echo "rpcuser=mooncoinrpc\n
+echo "rpcuser=mooncoinrpc
 rpcpassword=$pass" >> mooncoin.conf
+chown moon:moon mooncoin.conf
 
 #echo " Assume the identity of the non-privileged user, moon. "
 su - moon
